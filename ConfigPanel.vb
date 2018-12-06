@@ -38,6 +38,9 @@ Public Class ConfigPanel
     Private Shared LblBlanks As Label
     Private Shared WithEvents BlanksCB As ComboBox
 
+    Private Shared LblArtistWhitelist As Label
+    Private Shared WithEvents ArtistWhitelistBox As TextBox
+
     Private Shared WithEvents LblUpdateCheck As Label
     Private Shared WithEvents UpdateCheckCB As CheckBox
 
@@ -65,11 +68,14 @@ Public Class ConfigPanel
         BlanksCB = New ComboBox With {.Bounds = New Rectangle(110, 114, 100, 21), .DropDownStyle = ComboBoxStyle.DropDownList}
         BlanksCB.Items.AddRange({1, 2, 3, 4, 5, 6, 7, 8, 9})
 
+        LblArtistWhitelist = New Label With {.Bounds = New Rectangle(10, 144, 292, 14)}
+        ArtistWhitelistBox = New TextBox With {.Bounds = New Rectangle(10, 160, 292, 21)}
+
         LblUpdateCheck = New Label With {.Bounds = New Rectangle(336, 1, 140, 42)}
         UpdateCheckCB = New CheckBox With {.Bounds = New Rectangle(319, 2, 13, 13)}
 
-        Border1 = New Panel With {.Bounds = New Rectangle(2, 1, 308, 170), .BackColor = Color.FromArgb(224, 224, 224)}
-        Border2 = New Panel With {.Bounds = New Rectangle(3, 2, 306, 168)}
+        Border1 = New Panel With {.Bounds = New Rectangle(2, 1, 308, 193), .BackColor = Color.FromArgb(224, 224, 224)}
+        Border2 = New Panel With {.Bounds = New Rectangle(3, 2, 306, 191)}
     End Sub
 
     Shared Sub SetupControls(ByVal Settings As SettingsCollection)
@@ -85,6 +91,8 @@ Public Class ConfigPanel
 
         If MySettings.BlankCount > 0 And MySettings.BlankCount < 10 Then BlanksCB.SelectedIndex = MySettings.BlankCount - 1
 
+        ArtistWhitelistBox.Text = MySettings.ArtistWhitelist
+
         UpdateCheckCB.Checked = MySettings.UpdateChecking
 
         For Each Lang As String In MySettings.LangBox1Items
@@ -98,7 +106,7 @@ Public Class ConfigPanel
     End Sub
 
     Shared Function GetControls() As Control()
-        Return {LblLang1, LangBox1, LblLang2, LangBox2, BtnL, BtnR, LblUI, UILangCB, LblBlanks, BlanksCB, LblUpdateCheck, UpdateCheckCB, Border2, Border1}
+        Return {LblLang1, LangBox1, LblLang2, LangBox2, BtnL, BtnR, LblUI, UILangCB, LblBlanks, BlanksCB, LblArtistWhitelist, ArtistWhitelistBox, LblUpdateCheck, UpdateCheckCB, Border2, Border1}
     End Function
 
     Shared Function GetSettings() As SettingsCollection
@@ -121,6 +129,7 @@ Public Class ConfigPanel
         LblLang2.Text = FallbackHelper(MySettings.UILanguage.LblLang2, LangEn.LblLang2)
         LblUI.Text = FallbackHelper(MySettings.UILanguage.LblUI, LangEn.LblUI)
         LblBlanks.Text = FallbackHelper(MySettings.UILanguage.LblBlanks, LangEn.LblBlanks)
+        LblArtistWhitelist.Text = FallbackHelper(MySettings.UILanguage.LblArtistWhitelist, LangEn.LblArtistWhitelist)
         LblUpdateCheck.Text = FallbackHelper(MySettings.UILanguage.LblUpdateCheck, LangEn.LblUpdateCheck)
     End Sub
 
@@ -149,6 +158,10 @@ Public Class ConfigPanel
 
     Private Shared Sub BlanksCB_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles BlanksCB.SelectionChangeCommitted
         MySettings.BlankCount = BlanksCB.SelectedItem
+    End Sub
+
+    Private Shared Sub ArtistWhitelistBox_TextChanged(sender As Object, e As EventArgs) Handles ArtistWhitelistBox.TextChanged
+        MySettings.ArtistWhitelist = ArtistWhitelistBox.Text
     End Sub
 
     Private Shared Sub UpdateCheckCB_CheckedChanged(sender As Object, e As EventArgs) Handles UpdateCheckCB.CheckedChanged

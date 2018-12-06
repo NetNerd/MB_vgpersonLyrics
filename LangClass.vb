@@ -36,6 +36,8 @@ Public Class LanguageClass
         Dim LblUI As String
         'LblBlanks is for the separator lines count.
         Dim LblBlanks As String
+        'LblArtistWhitelist is for the artist whitelist.
+        Dim LblArtistWhitelist As String
         'LblUpdateCheck is for the auto update checking checkbox.
         Dim LblUpdateCheck As String
 
@@ -75,16 +77,18 @@ Public Class LanguageClass
 
     'LangEnUS needs to be maintained
     Public Shared ReadOnly LangEn As New Language With {.Japanese = "Japanese", .Romaji = "Romaji", .English = "English", .Culture = "en-US", .Name = "English",
-                                                          .LblLang1 = "Available Languages:", .LblLang2 = "Displayed Languages:", .LblUI = "UI Language:", .LblBlanks = "Separator Lines:", .LblUpdateCheck = "Automatically Check for Updates",
+                                                          .LblLang1 = "Available Languages:", .LblLang2 = "Displayed Languages:", .LblUI = "UI Language:", .LblBlanks = "Separator Lines:",
+                                                          .LblArtistWhitelist = "Artist Whitelist:", .LblUpdateCheck = "Automatically Check for Updates",
                                                           .SaveErrorMsg = "The file could not be saved.", .FolderCreateErrorMsg = "The folder could not be created.",
                                                           .UninstallErrorMsg1 = "MB_VocaDbLyrics failed to remove its settings files.", .UninstallErrorMsg2 = "The remaining files can be found in:",
                                                           .UpdateMsg = "A new version of the plugin is available." & vbNewLine & "Would you like to visit the release page to download it?", .CurVer = "Current Version: ", .NewVer = "New Version: "}
 
     Public Shared ReadOnly LangJa As New Language With {.Japanese = "日本語", .Romaji = "ローマ字", .English = "英語", .Culture = "ja-JP", .Name = "日本語",
-                                                        .LblLang1 = "利用可能言語： ", .LblLang2 = "表示言語：", .LblUI = "UI言語：", .LblBlanks = "区切り行の数:", .LblUpdateCheck = "新しいバージョンを自動チェックする", '"新しいバージョンの自動チェック",
+                                                        .LblLang1 = "利用可能言語： ", .LblLang2 = "表示言語：", .LblUI = "UI言語：", .LblBlanks = "区切り行の数:",
+                                                        .LblArtistWhitelist = "アーチスト・ホワイトリスト", .LblUpdateCheck = "新しいバージョンを自動にチェックする", '"新しいバージョンの自動チェック",
                                                         .SaveErrorMsg = "ファイルを保存できませんでした。", .FolderCreateErrorMsg = "新規フォルダを書きませんでした。",
                                                         .UninstallErrorMsg1 = "MB_VocaDbLyricsは設定ファイルを削除できませんでした。", .UninstallErrorMsg2 = "残っているファイルの場所：",
-                                                        .UpdateMsg = "プラグインの新しいバージョンが利用可能。" & vbNewLine & "ダウンロードするにはリリースページに行きたいか？", .CurVer = "現行のバージョン：　", .NewVer = "新バージョン：　"}
+                                                        .UpdateMsg = "プラグインの新しいバージョンが解放しました。" & vbNewLine & "ダウンロードするのためにリリースページに行きたいか？", .CurVer = "現行のバージョン：　", .NewVer = "新バージョン：　"}
     'Public Shared ReadOnly LangList() As Language = {LangEnUS, LangEnGB, LangJa}
     Public Shared Function LangList() As Language()
         Return {LangEn, LangJa}

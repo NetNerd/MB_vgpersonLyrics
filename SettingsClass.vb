@@ -46,6 +46,7 @@ Public Class SettingsClass
         Dim LangBox2Items() As String
         Dim UILanguage As LanguageClass.Language
         Dim BlankCount As Byte
+        Dim ArtistWhitelist As String
         Dim UpdateChecking As Boolean
 
         Function MakeString(Settings() As String) As String
@@ -81,6 +82,9 @@ Public Class SettingsClass
                     Case "BlankCount"
                         OutStr.WriteLine("BlankCount:" & BlankCount)
 
+                    Case "ArtistWhitelist"
+                        OutStr.WriteLine("ArtistWhitelist:" & ArtistWhitelist)
+
                     Case "UpdateChecking"
                         OutStr.WriteLine("UpdateChecking:" & UpdateChecking.ToString())
 
@@ -114,6 +118,9 @@ Public Class SettingsClass
 
                         Case "BlankCount"
                             BlankCount = Split(1)
+
+                        Case "ArtistWhitelist"
+                            ArtistWhitelist = Split(1)
 
                         Case "UpdateChecking"
                             UpdateChecking = Boolean.Parse(Split(1))
